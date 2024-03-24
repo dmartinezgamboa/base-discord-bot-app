@@ -1,3 +1,19 @@
+Inspired create stand-alone boiler-plate after contributions I had made to a private bot repository from [hailthekid](https://github.com/hailthekid)
+
+## New Features:
+- Application re-factors:
+  - Object oriented implementation and `Bot` class.
+  - Flattened directory structure
+  - Registering of event listeners and commands now follow a more common pattern
+  - Clear export / import structure
+- Development Tools:
+  - Internal and external documentation for important utilities
+  - CLI tool for registering commands with Discord API
+  - `nodemon` restarts application automatically during development
+  - Pre-commit hooks:
+    - `eslint` - linting
+    - `prettier` - formatter
+
 ## Installation
 
 1. #### Set up your Github account and install `git`.
