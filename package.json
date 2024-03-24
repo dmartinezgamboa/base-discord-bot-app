@@ -1,0 +1,39 @@
+{
+  "name": "base-discord-bot-app",
+  "version": "1.0.0",
+  "description": "discord bot boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmartinezgamboa/base-discord-bot-app.git"
+  },
+  "author": "Daniel Martinez-Gamboa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmartinezgamboa/base-discord-bot-app/issues"
+  },
+  "homepage": "https://github.com/dmartinezgamboa/base-discord-bot-app#readme",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsdoc": "^48.2.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "prettier --write"
+    ]
+  }
+}
