@@ -9,15 +9,16 @@ const pingCommand = {
 
 async function execute(interaction) {
     const sent = await interaction.reply({
-        content: "Pinging...",
+        content: "*Pinging...*",
         fetchReply: true,
     });
-
     const websocketHeartbeat = interaction.client.ws.ping;
     const roundtripLatency =
         sent.createdTimestamp - interaction.createdTimestamp;
     const content = `
-        Websocket Heartbeat: ${websocketHeartbeat}ms\nRoundtrip Latency: ${roundtripLatency}ms
+\`\`\`
+Websocket Heartbeat: ${websocketHeartbeat}ms\nRoundtrip Latency: ${roundtripLatency}ms
+\`\`\`
     `;
 
     await interaction.editReply({
