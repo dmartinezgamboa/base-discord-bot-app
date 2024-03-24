@@ -3,29 +3,38 @@ const { setCommands } = require("./utils/setCommands");
 const { setEvents } = require("./utils/setEvents");
 
 class Bot extends Client {
-    constructor(token) {
+    constructor(clientConfiguration) {
         super({
             intents: [
                 GatewayIntentBits.Guilds,
                 GatewayIntentBits.GuildMessages,
             ],
         });
-        this.TOKEN = token;
+
         this.commands = new Collection();
+
+        const { token, commands, events } = clientConfiguration;
+        this._TOKEN = token;
+        this._commands = commands;
+        this._events = events;
     }
 
     run() {
-        this.#registerCommands(this);
-        this.#registerEvents(this);
-        this.login(this.TOKEN);
+        this.#registerClientCommands();
+        this.#registerClientEvents();
+        this.#login();
     }
 
-    #registerCommands(client) {
-        setCommands(client);
+    #login() {
+        this.login(this._TOKEN);
     }
 
-    #registerEvents(client) {
-        setEvents(client);
+    #registerClientCommands() {
+        setCommands(this, this._commands);
+    }
+
+    #registerClientEvents() {
+        setEvents(this, this._events);
     }
 }
 
