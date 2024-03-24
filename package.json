@@ -15,7 +15,7 @@
     "url": "git+https://github.com/dmartinezgamboa/base-discord-bot-app.git"
   },
   "author": "Daniel Martinez-Gamboa",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dmartinezgamboa/base-discord-bot-app/issues"
   },
