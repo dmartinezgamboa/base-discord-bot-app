@@ -2,8 +2,10 @@
   "name": "base-discord-bot-app",
   "version": "1.0.0",
   "description": "discord bot boilerplate",
-  "main": "index.js",
+  "main": "src/start.js",
   "scripts": {
+    "start": "node src/start",
+    "dev": "nodemon --delay 500ms src/start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky"
   },
