@@ -1,5 +1,6 @@
-const { Client, GatewayIntentBits } = require("discord.js");
-const { setEvents } = require("./utils/setEvents")
+const { Client, Collection, GatewayIntentBits } = require("discord.js");
+const { setCommands } = require("./utils/setCommands");
+const { setEvents } = require("./utils/setEvents");
 
 class Bot extends Client {
     constructor(token) {
@@ -10,11 +11,17 @@ class Bot extends Client {
             ],
         });
         this.TOKEN = token;
+        this.commands = new Collection();
     }
 
     run() {
+        this.#registerCommands(this);
         this.#registerEvents(this);
         this.login(this.TOKEN);
+    }
+
+    #registerCommands(client) {
+        setCommands(client);
     }
 
     #registerEvents(client) {
