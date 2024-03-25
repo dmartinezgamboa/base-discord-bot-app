@@ -1,4 +1,5 @@
 const { BaseInteraction, ApplicationCommandType } = require("discord.js");
+const { ApplicationCommandNotImplemented } = require("../../utils/errors");
 const { handleApplicationCommand } = require("./handleApplicationCommand");
 
 /**
@@ -17,7 +18,9 @@ const execute = (interaction) => {
             handleApplicationCommand(interaction);
             break;
         default:
-            throw Error("Unhandled ApplicationCommandType");
+            throw new ApplicationCommandNotImplemented(
+                "Unhandled ApplicationCommandType."
+            );
     }
 };
 
