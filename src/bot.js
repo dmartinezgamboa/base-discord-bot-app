@@ -1,4 +1,4 @@
-const { Client, Collection, GatewayIntentBits } = require("discord.js");
+const { Client, Collection } = require("discord.js");
 const { setCommands } = require("./utils/setCommands");
 const { setEvents } = require("./utils/setEvents");
 
@@ -8,14 +8,9 @@ class Bot extends Client {
     #events;
 
     constructor(clientConfiguration) {
-        const { token, commands, events } = clientConfiguration;
+        const { token, commands, events, intents } = clientConfiguration;
 
-        super({
-            intents: [
-                GatewayIntentBits.Guilds,
-                GatewayIntentBits.GuildMessages,
-            ],
-        });
+        super({ intents });
 
         this.commands = new Collection();
 
