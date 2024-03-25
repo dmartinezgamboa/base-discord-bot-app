@@ -1,9 +1,5 @@
-const { BaseInteraction } = require("discord.js");
-
-const interactionEvent = {
-    name: "interactionCreate",
-    execute,
-};
+const { BaseInteraction, ApplicationCommandType } = require("discord.js");
+const { handleApplicationCommand } = require("./handleApplicationCommand");
 
 /**
  * Executes on interaction. First check if input is slash command.
@@ -12,26 +8,22 @@ const interactionEvent = {
  *
  * https://old.discordjs.dev/#/docs/discord.js/main/class/BaseInteraction
  */
-async function execute(interaction) {
-    if (!interaction.isChatInputCommand()) return;
-
+const execute = (interaction) => {
     console.log(
         `User: "${interaction.member.user.username}" interacted with client`
     );
-
-    const { commandName } = interaction;
-    const command = interaction.client.commands.get(commandName);
-
-    try {
-        await command.execute(interaction);
-        console.log(`Command: '${commandName}' executed`);
-    } catch (error) {
-        console.error(error);
-        await interaction.reply({
-            content: `Something went wrong while executing '${commandName}'!`,
-            ephemeral: true,
-        });
+    switch (interaction.type) {
+        case ApplicationCommandType.User:
+            handleApplicationCommand(interaction);
+            break;
+        default:
+            throw Error("Unhandled ApplicationCommandType");
     }
-}
+};
+
+const interactionEvent = {
+    name: "interactionCreate",
+    execute,
+};
 
 module.exports = { interactionEvent };
