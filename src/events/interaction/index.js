@@ -1,4 +1,4 @@
-const { BaseInteraction, ApplicationCommandType } = require("discord.js");
+const { BaseInteraction, InteractionType } = require("discord.js");
 const { ApplicationCommandNotImplemented } = require("../../utils/errors");
 const { handleApplicationCommand } = require("./handleApplicationCommand");
 
@@ -14,7 +14,7 @@ const execute = (interaction) => {
         `User: "${interaction.member.user.username}" interacted with client`
     );
     switch (interaction.type) {
-        case ApplicationCommandType.User:
+        case InteractionType.ApplicationCommand:
             handleApplicationCommand(interaction);
             break;
         default:
