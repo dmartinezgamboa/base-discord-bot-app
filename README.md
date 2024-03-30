@@ -42,12 +42,14 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
         npm install
 
 1. #### Start the Bot application.
-        npm run register
-    > Registering your commands is required to use slash commands. 
-
-    > This must be done at least once and whenever you want to add / remove commands. See [Registering Commands](#registering-commands)
-
         npm start
+
+    ##### To Register Commands:
+        npm start --register
+    
+    > Registers currently implemented commands globally
+
+    > This must be done at least once and whenever you want to update registered commands with Discord's API. For more options, see [Registering Commands](#registering-commands).
 
 ## Development
 
