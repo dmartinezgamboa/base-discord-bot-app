@@ -1,5 +1,6 @@
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
+const { log } = require('./debugger')
 
 /**
  * Register commands globally unless a guild_id is provided.
@@ -47,8 +48,8 @@ const registerSlashCommands = async (params) => {
             } application (/) commands!`
         );
     } catch (error) {
-        console.error(error);
+        console.error(error)
     }
 };
 
-module.exports = { registerSlashCommands };
+module.exports = { registerSlashCommands: log(__filename, registerSlashCommands) };

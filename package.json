@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/dmartinezgamboa/base-discord-bot-app#readme",
   "dependencies": {
+    "debug": "^4.3.4",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5"
   },

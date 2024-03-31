@@ -42,15 +42,13 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
         npm install
 
 1. #### Start the Bot application.
-        npm start
-
-    ##### To Register Commands:
-        npm start --register
+        npm start [--register] (--debug | --debug="<scope>")
     
-    > Registers currently implemented commands globally
+    Options: 
 
-    > This must be done at least once and whenever you want to update registered commands with Discord's API. For more options, see [Registering Commands](#registering-commands).
+    - `--register`: Registers currently implemented slash commands with Discords API globally. See [Registering Commands](#registering-commands).
 
+    - `--debug`: Adds logging to `stdout`. See [Debug Logs](#debug-logs)
 ## Development
 
 ### Setup:
@@ -62,10 +60,13 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
         npm run prepare
 
 1. #### Run the app in development mode.
-        npm run dev
+        npm run dev (--debug | --debug="<scope>")
+
+    Options:
+    - `--debug` Adds logging to `stdout`. For more options see [Debug Logs](#debug-logs)
+
 
 ### Adding Commands:
-> https://discordjs.guide/creating-your-bot/command-handling.html#loading-command-files
 
 1. #### Create your command file in: `src/commands` directory.
     ```node
@@ -90,6 +91,8 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
     module.exports = [ ... , myCommand]
     ```
 Done! The bot will set this command on the client during initialization.
+
+Reference: https://discordjs.guide/creating-your-bot/command-handling.html#loading-command-files
 
 ### Registering Commands:
 
@@ -118,7 +121,20 @@ Registering a command globally ***and*** for a guild will result in duplicated c
 
 > Only necessary to run when updating commands. There is a daily limit on registering new commands.
 
-https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration
+Reference: https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration
+
+### Debug Logs
+
+You may add logging to `stdout` whether using developer mode or production using the following flag:
+
+    --debug
+
+- Includes all logs from all scopes of the application.
+- This flag supports arguments with: `--debug="<scope>"`
+
+> For more information on scope, see the `debug` library documentation: https://www.npmjs.com/package/debug#usage
+
+
 
 ## References:
 

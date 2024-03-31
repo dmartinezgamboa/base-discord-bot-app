@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const commands = require("./commands");
+const { log, configureDebugger } = require('./utils/debugger')
 const { registerSlashCommands } = require("./utils/registerSlashCommands");
 
 const {
@@ -18,5 +19,5 @@ const params = {
     token: TOKEN,
 };
 
-console.log(params);
-registerSlashCommands(params);
+configureDebugger();
+log(registerSlashCommands)(params);

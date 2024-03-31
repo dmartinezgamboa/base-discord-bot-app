@@ -1,10 +1,11 @@
 const { SlashCommandBuilder } = require("discord.js");
+const { log } = require('../../utils/debugger')
 
 const pingCommand = {
     data: new SlashCommandBuilder()
         .setName("ping")
         .setDescription("Return Websocket Heartbeat and Roundtrip Latency"),
-    execute,
+    execute: log(__filename, execute),
 };
 
 async function execute(interaction) {

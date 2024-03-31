@@ -1,11 +1,12 @@
 const { Client } = require("discord.js");
+const { log } = require('./debugger')
 
 /**
  * Retrieves all events listeners on start and registers to client.
  * Add new event listener in src/events.
  *
  * @param {Client} client
- * @param {Array} eventListeners
+ * @param {Array<object>} eventListeners
  *
  * https://discordjs.guide/creating-your-bot/event-handling.html#individual-event-files
  */
@@ -21,8 +22,7 @@ function setEvents(client, eventListeners) {
                 event.execute(...args);
             });
         }
-        console.log(`Event: '${event.name}' set on client`);
     });
 }
 
-module.exports = { setEvents };
+module.exports = { setEvents: log(__filename, setEvents) };
