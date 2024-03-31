@@ -1,17 +1,18 @@
 const { npm_config_debug: DEBUG } = process.env
 
-const debug = (namespace) => {
-    return new Debugger(namespace)
-}
-
 const configureDebugger = () => {
     process.env.DEBUG = (DEBUG === "true") ? "*" : DEBUG
 };
+
+const debug = (namespace) => {
+    return new Debugger(namespace)
+}
 
 class Debugger {
     #debugger;
 
     constructor(namespace) {
+        /* Importing 'debug' outside of the class body does not work */
         this.#debugger = require('debug')(namespace) 
     }
     
@@ -19,14 +20,13 @@ class Debugger {
         this.#debugger = this.#debugger.extend(namespace)
     }
 
-    log(message) {
-        this.#debugger(message)
+    log(...params) {
+        this.#debugger(...params)
     }
 
-    error(message) {
-        this.#extend("ERROR")
-        this.#debugger(message)
+    error(...params) {
+        this.#debugger(...params)
     }
 }
 
-module.exports = { debug, configureDebugger }
+module.exports = { configureDebugger, debug }

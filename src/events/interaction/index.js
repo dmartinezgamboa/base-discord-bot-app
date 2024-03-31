@@ -1,5 +1,6 @@
 const { BaseInteraction, InteractionType } = require("discord.js");
 const { ApplicationCommandNotImplemented } = require("../../utils/errors");
+const { debug } = require('../../utils/debugger')
 const { handleApplicationCommand } = require("./handleApplicationCommand");
 
 /**
@@ -10,7 +11,7 @@ const { handleApplicationCommand } = require("./handleApplicationCommand");
  * https://old.discordjs.dev/#/docs/discord.js/main/class/BaseInteraction
  */
 const execute = (interaction) => {
-    console.log(
+    debug.log(
         `User: "${interaction.member.user.username}" interacted with client`
     );
     switch (interaction.type) {

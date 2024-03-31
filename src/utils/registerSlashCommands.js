@@ -1,5 +1,6 @@
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
+const { debug } = require('./debugger')
 
 /**
  * Register commands globally unless a guild_id is provided.
@@ -19,6 +20,8 @@ const { Routes } = require("discord-api-types/v9");
  * https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration
  */
 const registerSlashCommands = async (params) => {
+    debug('utils:registerSlashCommands').log(`Registering Commands with params: #{params}`)
+
     const { commands, clear, clientID, guildID, token } = params;
 
     const rest = new REST({ version: "9" }).setToken(token);
@@ -47,7 +50,7 @@ const registerSlashCommands = async (params) => {
             } application (/) commands!`
         );
     } catch (error) {
-        console.error(error);
+        debug('utils:registerSlashCommands').error(error)
     }
 };
 

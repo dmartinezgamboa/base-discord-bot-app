@@ -1,3 +1,5 @@
+const { debug } = require('../../utils/debugger')
+
 const handleApplicationCommand = async (interaction) => {
     if (interaction.isChatInputCommand()) {
         const { commandName } = interaction;
@@ -5,9 +7,9 @@ const handleApplicationCommand = async (interaction) => {
 
         try {
             await command.execute(interaction);
-            console.log(`Command: '${commandName}' executed`);
+            debug.log(`Command: '${commandName}' executed`);
         } catch (error) {
-            console.error(error);
+            debug.error(error);
             await interaction.reply({
                 content: `Something went wrong while executing '${commandName}'!`,
                 ephemeral: true,

@@ -1,4 +1,5 @@
 const { Client, Collection } = require("discord.js");
+const { debug } = require('./utils/debugger')
 const { registerSlashCommands } = require("./utils/registerSlashCommands");
 const { setCommands } = require("./utils/setCommands");
 const { setEvents } = require("./utils/setEvents");
@@ -9,6 +10,7 @@ class Bot extends Client {
     #DATA;
 
     constructor(config) {
+        debug('Bot:initialize').log('Initializing Bot', { config })
         super({ intents: config.intents });
 
         this.commands = new Collection();
@@ -29,6 +31,7 @@ class Bot extends Client {
     }
 
     run() {
+        debug('Bot:run').log(`Running ${this.name}`)
         if (this.#register) {
             this.#registerSlashCommands();
         }
@@ -39,15 +42,18 @@ class Bot extends Client {
     }
 
     get #register() {
+        debug('Bot:register').log('called')
         return this.#OPTIONS.register;
     }
 
     #login() {
+        debug('Bot:#login').log('called')
         this.login(this.#CLIENT_AUTH.token);
     }
 
     #registerClientCommands() {
         const commands = this.#DATA.commands;
+        debug('Bot:#registerClientCommands').log('called')
         setCommands(this, commands);
     }
 
