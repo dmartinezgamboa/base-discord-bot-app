@@ -1,5 +1,6 @@
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
+const { registerSlashCommandsDebug: debug } = require('./debug')
 
 /**
  * Register commands globally unless a guild_id is provided.
@@ -19,6 +20,7 @@ const { Routes } = require("discord-api-types/v9");
  * https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration
  */
 const registerSlashCommands = async (params) => {
+    debug.log('#call')
     const { commands, clear, clientID, guildID, token } = params;
 
     const rest = new REST({ version: "9" }).setToken(token);
@@ -27,6 +29,7 @@ const registerSlashCommands = async (params) => {
 
     try {
         if (guildID) {
+            debug.log("'guildID' argument is present")
             console.log(
                 `${clear ? "Clearing" : "Registering"} application (/) commands for Guild ID: ${guildID} ...`
             );
@@ -34,6 +37,7 @@ const registerSlashCommands = async (params) => {
                 body: body,
             });
         } else {
+            debug.log("no 'guildID' argument is present")
             await rest.put(Routes.applicationCommands(clientID), {
                 body: body,
             });
@@ -47,8 +51,9 @@ const registerSlashCommands = async (params) => {
             } application (/) commands!`
         );
     } catch (error) {
-        console.error(error);
+        debug.log(error)
+        console.error(error)
     }
 };
 
-module.exports = { registerSlashCommands };
+module.exports = { registerSlashCommands: registerSlashCommands };

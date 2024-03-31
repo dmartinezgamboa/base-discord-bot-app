@@ -18,5 +18,4 @@ const params = {
     token: TOKEN,
 };
 
-console.log(params);
-registerSlashCommands(params);
+registerSlashCommands(params)
