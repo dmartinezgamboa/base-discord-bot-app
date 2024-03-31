@@ -1,13 +1,32 @@
 const { npm_config_debug: DEBUG } = process.env
 
-const log = (message, name) => {
-    const debug = require('debug')(name)
-    debug(message)
-    return debug
-};
+const debug = (namespace) => {
+    return new Debugger(namespace)
+}
 
-const setDebugger = () => {
+const configureDebugger = () => {
     process.env.DEBUG = (DEBUG === "true") ? "*" : DEBUG
 };
 
-module.exports = { log, setDebugger }
+class Debugger {
+    #debugger;
+
+    constructor(namespace) {
+        this.#debugger = require('debug')(namespace) 
+    }
+    
+    #extend(namespace) {
+        this.#debugger = this.#debugger.extend(namespace)
+    }
+
+    log(message) {
+        this.#debugger(message)
+    }
+
+    error(message) {
+        this.#extend("ERROR")
+        this.#debugger(message)
+    }
+}
+
+module.exports = { debug, configureDebugger }
