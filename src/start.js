@@ -3,9 +3,9 @@ const { CLIENT_CONFIGURATION } = require("./config.js");
 const { configureDebugger, debug } = require("./utils/debugger.js");
 
 const start = async () => {
-    debug('start').log(`Starting ${Bot.name}`)
-    const client = new Bot(CLIENT_CONFIGURATION);
+    debug(__filename, start.name).log("Starting Application")
     
+    const client = new Bot(CLIENT_CONFIGURATION);
     
     client.run();
 };

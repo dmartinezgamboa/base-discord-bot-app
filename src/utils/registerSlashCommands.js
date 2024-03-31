@@ -20,7 +20,7 @@ const { debug } = require('./debugger')
  * https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration
  */
 const registerSlashCommands = async (params) => {
-    debug('utils:registerSlashCommands').log(`Registering Commands with params: #{params}`)
+    debug(__filename, registerSlashCommands.name).log("Registering Slash (/) Commands", params)
 
     const { commands, clear, clientID, guildID, token } = params;
 
@@ -50,7 +50,7 @@ const registerSlashCommands = async (params) => {
             } application (/) commands!`
         );
     } catch (error) {
-        debug('utils:registerSlashCommands').error(error)
+        console.error(error)
     }
 };
 

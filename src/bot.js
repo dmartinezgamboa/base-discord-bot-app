@@ -10,7 +10,7 @@ class Bot extends Client {
     #DATA;
 
     constructor(config) {
-        debug('Bot:initialize').log('Initializing Bot', { config })
+        debug(__filename, Bot.name).log('Initializing Bot', config)
         super({ intents: config.intents });
 
         this.commands = new Collection();
@@ -31,7 +31,8 @@ class Bot extends Client {
     }
 
     run() {
-        debug('Bot:run').log(`Running ${this.name}`)
+        debug(__filename, this.run.name).log("Running the Bot Client")
+
         if (this.#register) {
             this.#registerSlashCommands();
         }
@@ -42,27 +43,34 @@ class Bot extends Client {
     }
 
     get #register() {
-        debug('Bot:register').log('called')
+        debug(__filename, "#register").log('get')
+
         return this.#OPTIONS.register;
     }
 
     #login() {
-        debug('Bot:#login').log('called')
+        debug(__filename, this.#login.name).log()
+
         this.login(this.#CLIENT_AUTH.token);
     }
 
     #registerClientCommands() {
+        debug(__filename, this.#registerClientCommands.name).log()
+
         const commands = this.#DATA.commands;
-        debug('Bot:#registerClientCommands').log('called')
         setCommands(this, commands);
     }
 
     #registerClientEvents() {
+        debug(__filename, this.#registerClientEvents.name).log()
+
         const events = this.#DATA.events;
         setEvents(this, events);
     }
 
     #registerSlashCommands() {
+        debug(__filename, this.#registerSlashCommands.name).log()
+
         const params = {
             ...this.#CLIENT_AUTH,
             ...this.#OPTIONS,
