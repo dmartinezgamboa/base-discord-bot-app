@@ -5,10 +5,10 @@ const { setEventsDebug: debug } = require('./debug')
  * Retrieves all events listeners on start and registers to client.
  * Add new event listener in src/events.
  *
+ * https://discordjs.guide/creating-your-bot/event-handling.html#individual-event-files
+ * 
  * @param {Client} client
  * @param {Array<object>} eventListeners
- *
- * https://discordjs.guide/creating-your-bot/event-handling.html#individual-event-files
  */
 
 const setEvents = (client, eventListeners) => {

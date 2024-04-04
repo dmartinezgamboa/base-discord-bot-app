@@ -1,6 +1,6 @@
-Inspired create stand-alone boiler-plate after contributions I had made to a private bot repository from [hailthekid](https://github.com/hailthekid)
+Inspired to create stand-alone boiler-plate after contributions I had made to a private bot repository from [hailthekid](https://github.com/hailthekid)
 
-## New Features:
+#### New Features:
 - Application re-factors:
   - Object oriented implementation and `Bot` class.
   - Flattened directory structure
@@ -44,7 +44,7 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
         npm start [--register] 
 
     - `--register`: Registers currently implemented slash commands with Discords API globally. See [Registering Commands](#registering-commands) for more options.
-    > Registering is only necessary for the first time or when command data has been updated.
+        > Registering is only necessary for the first time or when command data has been updated.
 ## Development
 
 ### Setup:
@@ -64,7 +64,7 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
 
 ### Adding Commands:
 
-1. #### Create your command file in: `src/commands` directory.
+1. #### Create your command file in: `src/commands` directory, named `{myCommandName}.js`
     ```node
     const { SlashCommandBuilder } = require('discord.js')
 
@@ -84,7 +84,7 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
     ```node
     const { myCommand } = require(./commands.js')'
 
-    module.exports = [ ... , myCommand]
+    module.exports = [myCommand, ...]
     ```
 Done! The bot will set this command on the client during initialization.
 
@@ -92,7 +92,7 @@ Reference: https://discordjs.guide/creating-your-bot/command-handling.html#loadi
 
 ### Registering Commands:
 
-#### Usage:
+#### Usage
 
 For any `npm` command: (`start`, `run dev` etc):
 
@@ -103,7 +103,7 @@ For any `npm` command: (`start`, `run dev` etc):
 - `--guild-id`: If provided along with a `--register*` option, it will register the currently implemented commands only for that specific guild.
 - `--clear`: If provided with a `--register*` option, will remove any registered commands for that scope (Will be global or guild specific depending on additional options.)
 
-#### Note: 
+#### Note:
 Global commands and guild commands are separate lists.
 
 Registering a command globally ***and*** for a guild will result in duplicated commands in the server.
@@ -113,7 +113,7 @@ Registering a command globally ***and*** for a guild will result in duplicated c
 
 Reference: https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration
 
-### Debug Logs
+### Debug Logs:
 
 Using `npm run dev` automatically sets the `DEBUG` environment variable, which adds additional logging while the application is running.
 
@@ -122,8 +122,7 @@ Using `npm run dev` automatically sets the `DEBUG` environment variable, which a
 > For more information on scope, see the `debug` library documentation: https://www.npmjs.com/package/debug#usage
 
 
-
-## References:
+## References
 
 - https://discord.com/developers/docs/intro
 - https://discordjs.guide/#before-you-begin
