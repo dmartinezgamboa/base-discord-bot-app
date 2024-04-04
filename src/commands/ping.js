@@ -3,6 +3,8 @@ const { pingCommandDebug: debug } = require('../utils/debug')
 
 const execute = async (interaction) => {
     debug.log('#execute')
+
+    
     const sent = await interaction.reply({
         content: "*Pinging...*",
         fetchReply: true,

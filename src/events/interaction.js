@@ -1,5 +1,5 @@
 const { BaseInteraction, InteractionType } = require("discord.js");
-const { ApplicationCommandNotImplemented } = require("../utils/errors");
+const { ApplicationCommandNotImplemented, NoMatchingClientCommandNameError } = require("../utils/errors");
 const { interactionCreateDebug: debug } = require('../utils/debug')
 
 /**
@@ -31,7 +31,21 @@ const handleApplicationCommand = async (interaction) => {
         const { commandName } = interaction;
         const command = interaction.client.commands.get(commandName);
 
-        await command.execute(interaction);
+        try {
+            if (!command) {
+                throw new NoMatchingClientCommandNameError(`No command matching ${interaction.commandName} was found.`);
+            }
+            
+            await command.execute(interaction);
+        } catch (error) {
+            debug.error(error);
+
+            if (interaction.replied || interaction.deferred) {
+                await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+            } else {
+                await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+            }
+        }
     }
 };
 

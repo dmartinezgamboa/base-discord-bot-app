@@ -24,7 +24,21 @@ class InvalidSlashCommand extends Error {
     }
 }
 
+class NoMatchingClientCommandNameError extends Error {
+    constructor(...params) {
+        super(...params);
+
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, NoMatchingClientCommandNameError);
+        }
+
+        this.name = "NoMatchingClientCommandNameError";
+        this.date = new Date();
+    }
+}
+
 module.exports = { 
     ApplicationCommandNotImplemented,
-    InvalidSlashCommand
+    InvalidSlashCommand,
+    NoMatchingClientCommandNameError
 };
