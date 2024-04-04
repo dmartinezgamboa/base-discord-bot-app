@@ -15,7 +15,6 @@ const {
  */
 const execute = (interaction) => {
     debug.log('#execute')
-    interaction.type = InteractionType.ModalSubmit
     try {
         switch (interaction.type) {
             case InteractionType.ApplicationCommand:

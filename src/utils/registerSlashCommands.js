@@ -12,7 +12,7 @@ const registerSlashCommands = async (params) => {
 
     try {
         if (guildID) {
-            debug.log("'guildID' argument is present")
+            debug.log("'guildID' argument is present, registering only for this guild")
             console.log(
                 `${clear ? "Clearing" : "Registering"} application (/) commands for Guild ID: ${guildID} ...`
             );
@@ -20,7 +20,7 @@ const registerSlashCommands = async (params) => {
                 body: body,
             });
         } else {
-            debug.log("no 'guildID' argument is present")
+            debug.log("no 'guildID' argument is present, registering globally")
             await rest.put(Routes.applicationCommands(clientID), {
                 body: body,
             });
