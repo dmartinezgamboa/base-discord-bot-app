@@ -11,7 +11,7 @@ const { setEventsDebug: debug } = require('./debug')
  * https://discordjs.guide/creating-your-bot/event-handling.html#individual-event-files
  */
 
-function setEvents(client, eventListeners) {
+const setEvents = (client, eventListeners) => {
     debug.log("#call")
     eventListeners.forEach((event) => {
         if (event.once) {

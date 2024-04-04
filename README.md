@@ -72,10 +72,10 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
     data: new SlashCommandBuilder()
         .setName('myName')
         .setDescription('my description'),
-    execute
+    execute: execute
     }
 
-    async function execute(interaction) { ... }
+    const execute(interaction) => { ... }
 
     module.exports = { myCommand }
     ```
