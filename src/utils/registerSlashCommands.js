@@ -51,7 +51,6 @@ const registerSlashCommands = async (params) => {
             } application (/) commands!`
         );
     } catch (error) {
-        debug.log(error)
         console.error(error)
     }
 };

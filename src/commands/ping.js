@@ -10,6 +10,8 @@ const pingCommand = {
 
 async function execute(interaction) {
     debug.log('#execute')
+
+    
     const sent = await interaction.reply({
         content: "*Pinging...*",
         fetchReply: true,
