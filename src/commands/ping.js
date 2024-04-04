@@ -5,7 +5,7 @@ const pingCommand = {
     data: new SlashCommandBuilder()
         .setName("ping")
         .setDescription("Return Websocket Heartbeat and Roundtrip Latency"),
-    execute: execute,
+    execute: execute
 };
 
 async function execute(interaction) {
