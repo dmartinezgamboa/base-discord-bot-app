@@ -11,34 +11,20 @@ class ApplicationCommandNotImplemented extends Error {
     }
 }
 
-class ApplicationCommandError extends Error {
+class InvalidSlashCommand extends Error {
     constructor(...params) {
         super(...params);
 
         if (Error.captureStackTrace) {
-            Error.captureStackTrace(this, ApplicationCommandError);
+            Error.captureStackTrace(this, InvalidSlashCommand);
         }
 
-        this.name = "ApplicationCommandError";
+        this.name = "InvalidSlashCommand";
         this.date = new Date();
-    }
-}
-
-class DebuggerArgumentError extends Error {
-    constructor(...params) {
-        super(...params);
-
-        if (Error.captureStackTrace) {
-            Error.captureStackTrace(this, DebuggerArgumentError)
-        }
-
-        this.name = "DebuggerArgumentError"
-        this.date = new Date()
     }
 }
 
 module.exports = { 
     ApplicationCommandNotImplemented,
-    ApplicationCommandError,
-    DebuggerArgumentError
+    InvalidSlashCommand
 };
