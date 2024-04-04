@@ -13,6 +13,7 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
   - Pre-commit hooks:
     - `eslint` - linting
     - `prettier` - formatter
+  - Clear logging for additional information using `debug` library.
 
 ## Installation
 
@@ -24,8 +25,6 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
 
 1. #### Fork the repository and set up your remote on github.
         git remote add {your_name} git@github.com:{your_git_username}/bot
-
-
 
 1. #### Create your own discord bot application.
     > https://discord.com/developers/applications
@@ -42,15 +41,10 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
         npm install
 
 1. #### Start the Bot application.
-        npm start
+        npm start [--register]
+    Options: 
 
-    ##### To Register Commands:
-        npm start --register
-    
-    > Registers currently implemented commands globally
-
-    > This must be done at least once and whenever you want to update registered commands with Discord's API. For more options, see [Registering Commands](#registering-commands).
-
+    - `--register`: Registers currently implemented slash commands with Discords API globally. See [Registering Commands](#registering-commands).
 ## Development
 
 ### Setup:
@@ -64,8 +58,11 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
 1. #### Run the app in development mode.
         npm run dev
 
+    Options:
+    - `--debug` Adds logging to `stdout`. For more options see [Debug Logs](#debug-logs)
+
+
 ### Adding Commands:
-> https://discordjs.guide/creating-your-bot/command-handling.html#loading-command-files
 
 1. #### Create your command file in: `src/commands` directory.
     ```node
@@ -90,6 +87,8 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
     module.exports = [ ... , myCommand]
     ```
 Done! The bot will set this command on the client during initialization.
+
+Reference: https://discordjs.guide/creating-your-bot/command-handling.html#loading-command-files
 
 ### Registering Commands:
 
@@ -118,7 +117,17 @@ Registering a command globally ***and*** for a guild will result in duplicated c
 
 > Only necessary to run when updating commands. There is a daily limit on registering new commands.
 
-https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration
+Reference: https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration
+
+### Debug Logs
+
+Using `npm run dev` automatically sets the `DEBUG` environment variable, which adds additional logging while the application is running.
+
+- Includes all logs from all scopes of the application.
+
+> For more information on scope, see the `debug` library documentation: https://www.npmjs.com/package/debug#usage
+
+
 
 ## References:
 

@@ -1,19 +1,15 @@
+const { handleApplicationCommandDebug: debug } = require('../../utils/debug')
+
 const handleApplicationCommand = async (interaction) => {
+    debug.log('#call')
     if (interaction.isChatInputCommand()) {
+        debug.log("application command type: 'ChatInputCommand'")
+
         const { commandName } = interaction;
         const command = interaction.client.commands.get(commandName);
 
-        try {
-            await command.execute(interaction);
-            console.log(`Command: '${commandName}' executed`);
-        } catch (error) {
-            console.error(error);
-            await interaction.reply({
-                content: `Something went wrong while executing '${commandName}'!`,
-                ephemeral: true,
-            });
-        }
+        await command.execute(interaction);
     }
 };
 
-module.exports = { handleApplicationCommand };
+module.exports = { handleApplicationCommand: handleApplicationCommand };

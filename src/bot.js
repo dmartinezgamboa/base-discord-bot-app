@@ -1,4 +1,5 @@
 const { Client, Collection } = require("discord.js");
+const { botDebug: debug } = require('./utils/debug');
 const { registerSlashCommands } = require("./utils/registerSlashCommands");
 const { setCommands } = require("./utils/setCommands");
 const { setEvents } = require("./utils/setEvents");
@@ -7,10 +8,11 @@ class Bot extends Client {
     #CLIENT_AUTH;
     #OPTIONS;
     #DATA;
-
+    
     constructor(config) {
+        debug.log('#initializing')
         super({ intents: config.intents });
-
+        
         this.commands = new Collection();
 
         this.#DATA = {
@@ -30,19 +32,21 @@ class Bot extends Client {
 
     run() {
         if (this.#register) {
+            debug.log("'this.#register' is true")
             this.#registerSlashCommands();
         }
-
         this.#registerClientCommands();
-        this.#registerClientEvents();
+        this.#registerClientEvents();    
         this.#login();
     }
 
     get #register() {
+        debug.log('#register:#get')
         return this.#OPTIONS.register;
     }
 
     #login() {
+        debug.log('#login:#call')
         this.login(this.#CLIENT_AUTH.token);
     }
 
@@ -52,11 +56,13 @@ class Bot extends Client {
     }
 
     #registerClientEvents() {
+        debug.log('#registerClientEvents:#call')
         const events = this.#DATA.events;
         setEvents(this, events);
     }
 
     #registerSlashCommands() {
+        debug.log('#registerSlashCommands:#call')
         const params = {
             ...this.#CLIENT_AUTH,
             ...this.#OPTIONS,

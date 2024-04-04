@@ -1,4 +1,5 @@
 const { Client } = require("discord.js");
+const { setCommandsDebug: debug } = require('./debug')
 
 /**
  * Retrieves all commands and attaches to client on start.
@@ -6,14 +7,17 @@ const { Client } = require("discord.js");
  *
  * @param {Client} client
  * @param {Array} commands
- *
+ * 
  * https://discordjs.guide/creating-your-bot/command-handling.html
  */
 function setCommands(client, commands) {
+    debug.log('#call')
     commands.forEach((command) => {
+        debug.log(`setting command: '${command.data.name}'`)
         client.commands.set(command.data.name, command);
-        console.log(`Command: '${command.data.name}' set on client`);
     });
 }
 
-module.exports = { setCommands };
+module.exports = { 
+    setCommands: setCommands,
+}
