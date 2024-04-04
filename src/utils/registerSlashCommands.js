@@ -2,23 +2,6 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { registerSlashCommandsDebug: debug } = require('./debug')
 
-/**
- * Register commands globally unless a guild_id is provided.
- *
- * Usage:
- *  npm run register [--guild_id=<guild_id>] [--clear]
- *
- * Options:
- *  --guild_id=<guild_id>   register commands for guild
- *  --clear                clear all commands from registered list
- *
- * Note: Global commands and guild commands are separate lists.
- *  Registering a command globally and for a guild will result in duplicated commands in the server.
- *  Removing a command globally does not remove it from guild lists and vice versa.
- *
- * Only necessary to run when updating commands. There is a daily limit on registering new commands.
- * https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration
- */
 const registerSlashCommands = async (params) => {
     debug.log('#call')
     const { commands, clear, clientID, guildID, token } = params;
