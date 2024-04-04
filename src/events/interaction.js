@@ -1,7 +1,6 @@
 const { BaseInteraction, InteractionType } = require("discord.js");
-const { ApplicationCommandNotImplemented } = require("../../utils/errors");
-const { interactionCreateDebug: debug } = require('../../utils/debug')
-const { handleApplicationCommand } = require("./handleApplicationCommand");
+const { ApplicationCommandNotImplemented } = require("../utils/errors");
+const { interactionCreateDebug: debug } = require('../utils/debug')
 
 /**
  * Executes on interaction. First check if input is slash command.
@@ -21,6 +20,18 @@ const execute = (interaction) => {
             throw new ApplicationCommandNotImplemented(
                 "Unhandled ApplicationCommandType."
             );
+    }
+};
+
+const handleApplicationCommand = async (interaction) => {
+    debug.log('#call')
+    if (interaction.isChatInputCommand()) {
+        debug.log("application command type: 'ChatInputCommand'")
+
+        const { commandName } = interaction;
+        const command = interaction.client.commands.get(commandName);
+
+        await command.execute(interaction);
     }
 };
 

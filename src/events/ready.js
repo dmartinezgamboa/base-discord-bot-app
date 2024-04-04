@@ -1,4 +1,4 @@
-const { readyEventDebug: debug } = require('../../utils/debug')
+const { readyEventDebug: debug } = require('../utils/debug')
 
 const readyEvent = {
     name: "ready",

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
-const { pingCommandDebug: debug } = require('../../utils/debug')
+const { pingCommandDebug: debug } = require('../utils/debug')
 
 const pingCommand = {
     data: new SlashCommandBuilder()
