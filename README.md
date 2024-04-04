@@ -41,10 +41,10 @@ Inspired create stand-alone boiler-plate after contributions I had made to a pri
         npm install
 
 1. #### Start the Bot application.
-        npm start [--register]
-    Options: 
+        npm start [--register] 
 
-    - `--register`: Registers currently implemented slash commands with Discords API globally. See [Registering Commands](#registering-commands).
+    - `--register`: Registers currently implemented slash commands with Discords API globally. See [Registering Commands](#registering-commands) for more options.
+    > Registering is only necessary for the first time or when command data has been updated.
 ## Development
 
 ### Setup:
@@ -92,22 +92,16 @@ Reference: https://discordjs.guide/creating-your-bot/command-handling.html#loadi
 
 ### Registering Commands:
 
-Included is a CLI tool that allows for managing your bots registered commands.
-
 #### Usage:
 
-    npm run register [--guild_id=<guild_id>] [--remove]
+For any `npm` command: (`start`, `run dev` etc):
 
-> If no options are given, it will register the currently implemented commands globally for all guilds the bot is currently in.
+    npm start [{--register | --register-only} [--guild-id=<guild_id>] [--clear]]
 
-#### Options:
-
-    --guild_id=<guild_id>
-
-> register commands for guild
-
-    --remove               
-> remove all commands from registered list
+- `--register`: If only option, registers the currently implemented commands globally with Discord API.
+- `--register-only`: Same operation as `--register` except the application will exist once registration is complete.
+- `--guild-id`: If provided along with a `--register*` option, it will register the currently implemented commands only for that specific guild.
+- `--clear`: If provided with a `--register*` option, will remove any registered commands for that scope (Will be global or guild specific depending on additional options.)
 
 #### Note: 
 Global commands and guild commands are separate lists.

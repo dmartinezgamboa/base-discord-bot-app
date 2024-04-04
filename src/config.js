@@ -8,6 +8,7 @@ const {
     npm_config_clear: CLEAR_REGISTERED_SLASH_COMMANDS,
     npm_config_guild_id: GUILD_ID,
     npm_config_register: REGISTER_SLASH_COMMANDS,
+    npm_config_register_only: REGISTER_ONLY,
     CLIENT_ID,
     TOKEN,
 } = process.env;
@@ -18,7 +19,8 @@ const CLIENT_CONFIGURATION = {
     clear: CLEAR_REGISTERED_SLASH_COMMANDS,
     clientID: CLIENT_ID,
     guildID: GUILD_ID,
-    register: REGISTER_SLASH_COMMANDS,
+    register_slash_commands: REGISTER_SLASH_COMMANDS,
+    register_only: REGISTER_ONLY,
     token: TOKEN,
     commands: commands,
     events: events,
