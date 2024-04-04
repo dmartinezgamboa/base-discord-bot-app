@@ -11,7 +11,7 @@ const { InvalidSlashCommand } = require('./errors')
  * @param {Client} client
  * @param {Array} commands
  */
-function setCommands(client, commands) {
+const setCommands = (client, commands) => {
     debug.log('#call')
 
     commands.forEach((command) => {
