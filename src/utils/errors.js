@@ -1,12 +1,25 @@
-class ApplicationCommandNotImplemented extends Error {
+class ApplicationCommandTypeNotImplemented extends Error {
     constructor(...params) {
         super(...params);
 
         if (Error.captureStackTrace) {
-            Error.captureStackTrace(this, ApplicationCommandNotImplemented);
+            Error.captureStackTrace(this, ApplicationCommandTypeNotImplemented);
         }
 
-        this.name = "ApplicationCommandNotImplemented";
+        this.name = "ApplicationCommandTypeNotImplemented";
+        this.date = new Date();
+    }
+}
+
+class InteractionTypeNotImplementedError extends Error {
+    constructor(...params) {
+        super(...params);
+
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, InteractionTypeNotImplementedError);
+        }
+
+        this.name = "InteractionTypeNotImplementedError";
         this.date = new Date();
     }
 }
@@ -38,7 +51,8 @@ class NoMatchingClientCommandNameError extends Error {
 }
 
 module.exports = { 
-    ApplicationCommandNotImplemented,
+    ApplicationCommandTypeNotImplemented,
     InvalidSlashCommand,
+    InteractionTypeNotImplementedError,
     NoMatchingClientCommandNameError
 };
