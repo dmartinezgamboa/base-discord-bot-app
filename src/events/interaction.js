@@ -1,25 +1,42 @@
 const { BaseInteraction, InteractionType } = require("discord.js");
-const { ApplicationCommandNotImplemented, NoMatchingClientCommandNameError } = require("../utils/errors");
 const { interactionCreateDebug: debug } = require('../utils/debug')
+const {
+    ApplicationCommandTypeNotImplemented,
+    InteractionTypeNotImplementedError,
+    NoMatchingClientCommandNameError
+} = require("../utils/errors");
 
 /**
  * Executes on interaction. First check if input is slash command.
  *
- * @param {BaseInteraction} interaction
- *
  * https://old.discordjs.dev/#/docs/discord.js/main/class/BaseInteraction
+ * 
+ * @param {BaseInteraction} interaction
  */
 const execute = (interaction) => {
     debug.log('#execute')
-    switch (interaction.type) {
-        case InteractionType.ApplicationCommand:
-            debug.log("interaction type: 'ApplicationCommand'")
-            handleApplicationCommand(interaction);
-            break;
-        default:
-            throw new ApplicationCommandNotImplemented(
-                "Unhandled ApplicationCommandType."
-            );
+    interaction.type = InteractionType.ModalSubmit
+    try {
+        switch (interaction.type) {
+            case InteractionType.ApplicationCommand:
+                debug.log(`interaction type: ${interaction.type}`)
+                handleApplicationCommand(interaction);
+                break;
+            case InteractionType.MessageComponent:
+                debug.log(`interaction type: ${interaction.type}`)
+                handleMessageComponent(interaction);
+                break;
+            case InteractionType.ModalSubmit:
+                debug.log(`interaction type: ${interaction.type}`)
+                handleModalSubmit(interaction);
+                break;
+            default:
+                throw new InteractionTypeNotImplementedError(
+                    "Unhandled InteractionType"
+                );
+        }
+    } catch(error) {
+        debug.error(error)
     }
 };
 
@@ -48,6 +65,22 @@ const handleApplicationCommand = async (interaction) => {
         }
     }
 };
+
+const handleMessageComponent = async (interaction) => {
+    try {
+        throw new ApplicationCommandTypeNotImplemented(`ApplicationCommand handler for type: ${interaction.type} not implemented`)
+    } catch(error) {
+        debug.error(error)
+    }
+}
+
+const handleModalSubmit = async (interaction) => {
+    try {
+        throw new ApplicationCommandTypeNotImplemented(`ApplicationCommand handler for type: ${interaction.type} not implemented`)
+    } catch(error) {
+        debug.error(error)
+    }
+}
 
 const interactionEvent = {
     name: "interactionCreate",
